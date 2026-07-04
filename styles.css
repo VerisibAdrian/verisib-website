@@ -224,6 +224,8 @@ p { color: var(--text); }
 .contact-intro h2 { font-size: clamp(3rem,5vw,5.3rem); }
 .contact-intro > p { max-width: 530px; color: #9bb5ab; }
 .email-link { display: inline-flex; align-items: center; gap: 20px; margin-top: 35px; padding-bottom: 5px; border-bottom: 1px solid rgba(255,255,255,.28); color: var(--white); font-family: var(--display); font-size: 1.2rem; }
+.contact-links { display: flex; flex-direction: column; align-items: flex-start; }
+.contact-links .email-link + .email-link { margin-top: 16px; }
 .contact-form { align-self: start; padding: 38px; color: var(--ink); background: var(--paper); }
 .contact-form label { display: block; margin-bottom: 17px; }
 .contact-form label > span { display: block; margin-bottom: 7px; font-size: .67rem; font-weight: 760; letter-spacing: .07em; text-transform: uppercase; }
@@ -245,6 +247,7 @@ p { color: var(--text); }
 .footer-bottom { display: flex; justify-content: space-between; gap: 50px; padding-top: 22px; border-top: 1px solid rgba(255,255,255,.1); }
 .footer-bottom p { margin: 0; color: #66847a; font-size: .65rem; }
 .mobile-contact { display: none; transition: opacity .2s, transform .2s; }
+.mobile-actions { display: none; transition: opacity .2s, transform .2s; }
 
 /* Subpages */
 .subhero { position: relative; min-height: 790px; padding: 170px 0 110px; overflow: hidden; }
@@ -357,7 +360,10 @@ p { color: var(--text); }
   .contact-section { padding-bottom: 0; }.contact-panel { width: 100%; padding: 55px 20px; box-shadow: none; }.contact-form { padding: 24px 18px; }.field-grid { grid-template-columns: 1fr; gap: 0; }
   .footer-grid { grid-template-columns: 1fr; gap: 38px; }.footer-bottom { display: block; padding-bottom: 58px; }.footer-bottom p + p { margin-top: 10px; }
   .mobile-contact { position: fixed; z-index: 90; right: 12px; bottom: max(10px, env(safe-area-inset-bottom)); left: 12px; display: flex; min-height: 50px; align-items: center; justify-content: space-between; padding: 0 18px; color: var(--forest); background: var(--mint); box-shadow: 0 15px 35px rgba(3,24,22,.25); font-size: .76rem; font-weight: 780; }
-  .mobile-contact.is-hidden { opacity: 0; pointer-events: none; transform: translateY(18px); }
+  .mobile-contact.is-hidden, .mobile-actions.is-hidden { opacity: 0; pointer-events: none; transform: translateY(18px); }
+  .mobile-actions { position: fixed; z-index: 90; right: 10px; bottom: max(10px, env(safe-area-inset-bottom)); left: 10px; display: grid; grid-template-columns: 1fr 1fr; overflow: hidden; box-shadow: 0 15px 35px rgba(3,24,22,.25); }
+  .mobile-actions a { display: flex; min-height: 52px; align-items: center; justify-content: center; gap: 14px; color: var(--forest); background: var(--mint); font-size: .77rem; font-weight: 780; }
+  .mobile-actions a:first-child { color: var(--white); background: var(--forest); }
   .subhero { min-height: 0; padding: 118px 0 78px; }.subhero-copy h1 { font-size: clamp(3.25rem,14.5vw,5rem); }.subhero-copy > p { font-size: .98rem; }.context-card, .workflow-card { padding: 20px; }
   .story-layout { gap: 35px; }.callout { grid-template-columns: 35px 1fr; }.decision-layout { gap: 50px; }.decision-graphic { min-height: 345px; }.decision-center { width: 90px; height: 90px; }.decision-tag { padding: 6px 9px; font-size: .56rem; }
   .compact-contact { padding: 0; }.compact-panel { grid-template-columns: 1fr; align-items: start; gap: 35px; padding: 70px 0; }

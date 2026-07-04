@@ -115,7 +115,7 @@
     window.location.assign(`mailto:hello@verisib.com?subject=${subject}&body=${body}`);
   });
 
-  const mobileContact = document.querySelector('.mobile-contact');
+  const mobileContact = document.querySelector('.mobile-contact, .mobile-actions');
   const contactTarget = document.querySelector('#contact, #refer, .compact-contact');
   if (mobileContact && contactTarget && 'IntersectionObserver' in window) {
     const contactObserver = new IntersectionObserver(([entry]) => {
