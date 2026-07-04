@@ -1,0 +1,17 @@
+{
+  "name": "Verisib",
+  "short_name": "Verisib",
+  "description": "Senior placement, made clear.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#f4f2ea",
+  "theme_color": "#071f1d",
+  "icons": [
+    {
+      "src": "/assets/favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    }
+  ]
+}
