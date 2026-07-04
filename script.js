@@ -28,7 +28,7 @@
     }
   });
 
-  const desktop = window.matchMedia('(min-width: 1061px)');
+  const desktop = window.matchMedia('(min-width: 961px)');
   desktop.addEventListener?.('change', (event) => {
     if (event.matches) setMenu(false);
   });
@@ -82,16 +82,6 @@
     item.textContent = String(new Date().getFullYear());
   });
 
-  const params = new URLSearchParams(window.location.search);
-  const roleSelect = document.querySelector('[data-role-select]');
-  const audienceRole = {
-    family: 'Family member or friend',
-    senior: 'Older adult exploring options',
-    professional: 'Hospital or rehabilitation professional',
-    case_manager: 'Case manager or care professional'
-  }[params.get('audience')];
-  if (roleSelect && audienceRole) roleSelect.value = audienceRole;
-
   const form = document.querySelector('[data-contact-form]');
   form?.addEventListener('submit', (event) => {
     event.preventDefault();
@@ -100,27 +90,29 @@
     const data = new FormData(form);
     const name = `${data.get('firstName')} ${data.get('lastName')}`.trim().slice(0, 100);
     const email = String(data.get('email')).trim().slice(0, 200);
-    const role = String(data.get('role')).trim().slice(0, 100);
     const message = String(data.get('message')).trim().slice(0, 3000);
     const subject = encodeURIComponent(`Verisib inquiry from ${name}`);
     const body = encodeURIComponent([
       `Name: ${name}`,
       `Email: ${email}`,
-      `Reaching out as: ${role}`,
       '',
       message
     ].join('\n'));
     const status = form.querySelector('[data-form-status]');
     if (status) status.textContent = 'Your email app should open with a prepared message. Review it, then choose Send.';
-    window.location.assign(`mailto:hello@verisib.com?subject=${subject}&body=${body}`);
+    window.location.assign(`mailto:sunnyside.aliving@gmail.com?subject=${subject}&body=${body}`);
   });
 
-  const mobileContact = document.querySelector('.mobile-contact, .mobile-actions');
-  const contactTarget = document.querySelector('#contact, #refer, .compact-contact');
-  if (mobileContact && contactTarget && 'IntersectionObserver' in window) {
-    const contactObserver = new IntersectionObserver(([entry]) => {
-      mobileContact.classList.toggle('is-hidden', entry.isIntersecting);
-    }, { threshold: 0.1 });
-    contactObserver.observe(contactTarget);
+  const mobileActions = document.querySelector('[data-mobile-actions]');
+  const actionTargets = document.querySelectorAll('#contact, .site-footer');
+  if (mobileActions && actionTargets.length && 'IntersectionObserver' in window) {
+    const visibleTargets = new Set();
+    const actionObserver = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => entry.isIntersecting
+        ? visibleTargets.add(entry.target)
+        : visibleTargets.delete(entry.target));
+      mobileActions.classList.toggle('is-hidden', visibleTargets.size > 0);
+    }, { threshold: 0.05 });
+    actionTargets.forEach((target) => actionObserver.observe(target));
   }
 })();

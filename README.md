@@ -4,9 +4,7 @@ The official static website for [verisib.com](https://verisib.com), built with s
 
 ## Pages
 
-- `/` — flagship placement and conversion experience
-- `/families.html` — guidance for families and older adults
-- `/professionals.html` — referral support for care professionals
+- `/` — family-focused placement and contact experience
 - `/privacy.html` — privacy notice
 - `/404.html` — Cloudflare Pages not-found experience
 
@@ -35,7 +33,7 @@ The `_headers`, `404.html`, `robots.txt`, `site.webmanifest`, and `sitemap.xml` 
 
 The site intentionally has no build step, framework, tracking scripts, third-party fonts, or runtime dependencies. The contact form prepares a message in the visitor's email application; it does not store information on the site.
 
-Authenticated product features such as accounts, profiles, matching, messaging, or notifications require a separate backend, identity provider, database, authorization model, and privacy/security review. They should not be simulated in this static site.
+The site is intentionally focused on families seeking assisted living or memory care guidance. It does not simulate accounts, messaging, matching, or other backend features.
 
 ## Publishing workflow
 
