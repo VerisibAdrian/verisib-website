@@ -202,7 +202,7 @@
     };
 
     try {
-      const response = await fetch('https://formsubmit.co/ajax/sunnyside.aliving@gmail.com', {
+      const response = await fetch('https://formsubmit.co/ajax/483fb98a51dfe4be88608df269dbcc39', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
         body: JSON.stringify(submission)
