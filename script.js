@@ -115,7 +115,14 @@
   const submitButton = startForm?.querySelector('[data-start-submit]');
   const startStatus = startForm?.querySelector('[data-start-status]');
   const confirmation = startDialog?.querySelector('[data-start-confirmation]');
+  const urgentPlacement = startForm?.querySelector('[data-urgent-placement]');
   let currentStartStep = 0;
+
+  const updateUrgentPlacement = () => {
+    if (!urgentPlacement) return;
+    const timing = startForm?.querySelector('input[name="timeline"]:checked')?.value;
+    urgentPlacement.hidden = timing !== 'Today / ASAP';
+  };
 
   const setStartStep = (index) => {
     currentStartStep = Math.max(0, Math.min(index, startSteps.length - 1));
@@ -126,6 +133,7 @@
     if (nextButton) nextButton.hidden = currentStartStep === startSteps.length - 1;
     if (submitButton) submitButton.hidden = currentStartStep !== startSteps.length - 1;
     if (startStatus) startStatus.textContent = '';
+    updateUrgentPlacement();
     const focusTarget = startSteps[currentStartStep]?.querySelector('input:not([type="radio"])');
     window.requestAnimationFrame(() => focusTarget?.focus());
   };
@@ -172,6 +180,9 @@
     if (validateStartStep()) setStartStep(currentStartStep + 1);
   });
   backButton?.addEventListener('click', () => setStartStep(currentStartStep - 1));
+  startForm?.querySelectorAll('input[name="timeline"]').forEach((option) => {
+    option.addEventListener('change', updateUrgentPlacement);
+  });
   startDialog?.querySelector('[data-start-close]')?.addEventListener('click', closeStartDialog);
   startDialog?.querySelector('[data-start-done]')?.addEventListener('click', closeStartDialog);
   startDialog?.addEventListener('close', () => document.body.classList.remove('menu-open'));
