@@ -117,6 +117,99 @@
         </div>
       </section>
 
+      <section class="section start-section" id="start-here">
+        <div class="shell">
+          <div class="section-heading centered reveal">
+            <p class="kicker"><span></span> Start Here</p>
+            <h2>What type of care are you looking for?</h2>
+          </div>
+          <div class="start-grid" aria-label="Choose a type of care">
+            <button class="start-card reveal" type="button" data-care-type="Assisted Living">
+              <span class="start-card-icon" aria-hidden="true"><svg viewBox="0 0 48 48"><path d="M8 22 24 9l16 13v17H8Z"/><path d="M19 39V27h10v12"/></svg></span>
+              <strong>Assisted Living</strong><span>Personal support in a welcoming home</span>
+            </button>
+            <button class="start-card reveal" type="button" data-care-type="Memory Care">
+              <span class="start-card-icon" aria-hidden="true"><svg viewBox="0 0 48 48"><path d="M24 39c8 0 14-6 14-14S32 11 24 11 10 17 10 25s6 14 14 14Z"/><path d="M19 25h10M24 20v10"/></svg></span>
+              <strong>Memory Care</strong><span>Specialized care in a secure setting</span>
+            </button>
+            <button class="start-card reveal" type="button" data-care-type="Hospice Care">
+              <span class="start-card-icon" aria-hidden="true"><svg viewBox="0 0 48 48"><path d="M24 39S9 31 9 19c0-5 4-9 9-9 3 0 5 1 6 4 2-3 4-4 7-4 5 0 9 4 9 9 0 12-16 20-16 20Z"/></svg></span>
+              <strong>Hospice Care</strong><span>Comfort-focused support with compassion</span>
+            </button>
+            <button class="start-card reveal" type="button" data-care-type="Respite Care">
+              <span class="start-card-icon" aria-hidden="true"><svg viewBox="0 0 48 48"><path d="M12 19h24v20H12Z"/><path d="M17 19v-4h14v4M18 29h12"/></svg></span>
+              <strong>Respite Care</strong><span>Short-term care when families need help</span>
+            </button>
+          </div>
+        </div>
+      </section>
+
+      <dialog class="start-dialog" data-start-dialog aria-labelledby="start-form-title">
+        <button class="start-close" type="button" aria-label="Close placement form" data-start-close></button>
+        <div class="start-dialog-head">
+          <p class="kicker"><span></span> Free placement guidance</p>
+          <h2 id="start-form-title">Tell us what your family needs.</h2>
+          <p data-selected-care></p>
+        </div>
+        <div class="start-progress" aria-label="Form progress">
+          <span data-step-label>Step 1 of 5</span>
+          <div><i data-step-progress></i></div>
+        </div>
+        <form class="start-form" data-start-form novalidate>
+          <input type="hidden" name="careType" data-care-input>
+          <input class="form-trap" type="text" name="_honey" tabindex="-1" autocomplete="off" aria-hidden="true">
+          <fieldset class="start-step" data-start-step>
+            <legend>What city are you looking in?</legend>
+            <label class="start-field"><span>City</span><input name="city" type="text" autocomplete="address-level2" maxlength="100" required placeholder="For example, Phoenix"></label>
+          </fieldset>
+          <fieldset class="start-step" data-start-step hidden>
+            <legend>What is your approximate monthly budget?</legend>
+            <div class="start-options">
+              <label><input type="radio" name="budget" value="Under $4,000" required><span>Under $4,000</span></label>
+              <label><input type="radio" name="budget" value="$4,000–6,000"><span>$4,000–6,000</span></label>
+              <label><input type="radio" name="budget" value="$6,000–8,000"><span>$6,000–8,000</span></label>
+              <label><input type="radio" name="budget" value="$8,000+"><span>$8,000+</span></label>
+            </div>
+          </fieldset>
+          <fieldset class="start-step" data-start-step hidden>
+            <legend>Room preference:</legend>
+            <div class="start-options">
+              <label><input type="radio" name="roomPreference" value="Private Room" required><span>Private Room</span></label>
+              <label><input type="radio" name="roomPreference" value="Shared Room"><span>Shared Room</span></label>
+              <label><input type="radio" name="roomPreference" value="No Preference"><span>No Preference</span></label>
+            </div>
+          </fieldset>
+          <fieldset class="start-step" data-start-step hidden>
+            <legend>How soon do you need placement?</legend>
+            <div class="start-options">
+              <label><input type="radio" name="timeline" value="Today / ASAP" required><span>Today / ASAP</span></label>
+              <label><input type="radio" name="timeline" value="Within 7 days"><span>Within 7 days</span></label>
+              <label><input type="radio" name="timeline" value="Within 30 days"><span>Within 30 days</span></label>
+              <label><input type="radio" name="timeline" value="Just researching"><span>Just researching</span></label>
+            </div>
+          </fieldset>
+          <fieldset class="start-step" data-start-step hidden>
+            <legend>How can Adrian reach you?</legend>
+            <label class="start-field"><span>Name</span><input name="name" type="text" autocomplete="name" maxlength="100" required></label>
+            <label class="start-field"><span>Phone number</span><input name="phone" type="tel" autocomplete="tel" inputmode="tel" maxlength="30" required></label>
+            <label class="start-field"><span>Email <small>Optional</small></span><input name="email" type="email" autocomplete="email" inputmode="email" maxlength="200"></label>
+            <p class="start-privacy">Please do not include medical records or other sensitive information.</p>
+          </fieldset>
+          <div class="start-form-actions">
+            <button class="start-back" type="button" data-start-back hidden>Back</button>
+            <button class="button" type="button" data-start-next>Continue <span class="icon-arrow" aria-hidden="true"></span></button>
+            <button class="button button-bright" type="submit" data-start-submit hidden>Send my information <span class="icon-arrow" aria-hidden="true"></span></button>
+          </div>
+          <p class="start-status" role="status" aria-live="polite" data-start-status></p>
+        </form>
+        <div class="start-confirmation" data-start-confirmation hidden tabindex="-1">
+          <span class="check-icon" aria-hidden="true"></span>
+          <h3>Thank you.</h3>
+          <p>Thank you. Adrian will personally review your information and contact you to help you find the best care option.</p>
+          <button class="button" type="button" data-start-done>Close</button>
+        </div>
+      </dialog>
+
       <section class="section help-section" id="how-we-help">
         <div class="shell two-column">
           <div class="section-heading reveal">
