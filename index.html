@@ -11,7 +11,7 @@
     <link rel="canonical" href="https://verisib.com/">
     <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
     <link rel="manifest" href="/site.webmanifest">
-    <link rel="stylesheet" href="/styles.css?v=b36276b">
+    <link rel="stylesheet" href="/styles.css?v=8a1f4c2">
     <meta property="og:type" content="website">
     <meta property="og:locale" content="en_US">
     <meta property="og:site_name" content="Verisib">
@@ -159,8 +159,9 @@
           <input type="hidden" name="careType" data-care-input>
           <input class="form-trap" type="text" name="_honey" tabindex="-1" autocomplete="off" aria-hidden="true">
           <fieldset class="start-step" data-start-step>
-            <legend>What city are you looking in?</legend>
-            <label class="start-field"><span>City</span><input name="city" type="text" autocomplete="address-level2" maxlength="100" required placeholder="For example, Phoenix"></label>
+            <legend>Preferred City or ZIP Code</legend>
+            <label class="start-field"><span>Preferred City or ZIP Code</span><input name="preferredArea" type="text" autocomplete="address-level2" maxlength="100" required placeholder="Example: Phoenix, Scottsdale, or 85032" aria-describedby="preferred-area-help"></label>
+            <p class="start-privacy" id="preferred-area-help">We'll search for the best assisted living homes in and around your preferred area.</p>
           </fieldset>
           <fieldset class="start-step" data-start-step hidden>
             <legend>What is your approximate monthly budget?</legend>
@@ -205,8 +206,8 @@
         </form>
         <div class="start-confirmation" data-start-confirmation hidden tabindex="-1">
           <span class="check-icon" aria-hidden="true"></span>
-          <h3>Thank you.</h3>
-          <p>Thank you. Adrian will personally review your information and contact you to help you find the best care option.</p>
+          <h3>Thank you!</h3>
+          <p>Your request has been received.<br><br>Adrian will personally review your information and contact you as soon as possible with suitable assisted living options.<br><br>If your need is urgent, please call <a href="tel:+16233403966">(623) 340-3966</a>.</p>
           <button class="button" type="button" data-start-done>Close</button>
         </div>
       </dialog>
@@ -363,6 +364,6 @@
     </footer>
 
     <div class="mobile-actions" data-mobile-actions><a href="tel:+16233403966">Call now</a><a href="mailto:sunnyside.aliving@gmail.com">Email us</a></div>
-    <script src="/script.js?v=b36276b" defer></script>
+    <script src="/script.js?v=8a1f4c2" defer></script>
   </body>
 </html>

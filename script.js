@@ -198,8 +198,8 @@
 
     const data = new FormData(startForm);
     const submission = {
+      'Preferred City or ZIP Code': String(data.get('preferredArea') || ''),
       'Care type': String(data.get('careType') || ''),
-      'City': String(data.get('city') || ''),
       'Monthly budget': String(data.get('budget') || ''),
       'Room preference': String(data.get('roomPreference') || ''),
       'Placement timing': String(data.get('timeline') || ''),
