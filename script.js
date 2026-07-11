@@ -116,6 +116,10 @@
   const startStatus = startForm?.querySelector('[data-start-status]');
   const confirmation = startDialog?.querySelector('[data-start-confirmation]');
   const urgentPlacement = startForm?.querySelector('[data-urgent-placement]');
+  const placementEndpoints = [
+    'https://formsubmit.co/ajax/sunnyside.aliving@gmail.com',
+    'https://formsubmit.co/ajax/483fb98a51dfe4be88608df269dbcc39'
+  ];
   let currentStartStep = 0;
 
   const updateUrgentPlacement = () => {
@@ -172,6 +176,46 @@
     return false;
   };
 
+  const readSubmissionResult = async (response) => {
+    const text = await response.text();
+    try {
+      return JSON.parse(text);
+    } catch (error) {
+      return { message: text };
+    }
+  };
+
+  const isSubmissionSuccess = (response, result) => {
+    const success = String(result?.success ?? '').toLowerCase();
+    const message = String(result?.message ?? '');
+    return response.ok && (success === 'true' || /submitted successfully/i.test(message));
+  };
+
+  const buildSubmissionBody = (submission) => {
+    const body = new FormData();
+    Object.entries(submission).forEach(([key, value]) => body.append(key, value));
+    return body;
+  };
+
+  const postPlacementRequest = async (submission) => {
+    let lastError = new Error('Submission failed');
+    for (const endpoint of placementEndpoints) {
+      try {
+        const response = await fetch(endpoint, {
+          method: 'POST',
+          headers: { 'Accept': 'application/json' },
+          body: buildSubmissionBody(submission)
+        });
+        const result = await readSubmissionResult(response);
+        if (isSubmissionSuccess(response, result)) return result;
+        lastError = new Error(result?.message || `Submission failed with status ${response.status}`);
+      } catch (error) {
+        lastError = error;
+      }
+    }
+    throw lastError;
+  };
+
   document.querySelectorAll('[data-care-type]').forEach((card) => {
     card.addEventListener('click', () => openStartDialog(card.dataset.careType || 'Care'));
   });
@@ -205,21 +249,16 @@
       'Placement timing': String(data.get('timeline') || ''),
       'Name': String(data.get('name') || ''),
       'Phone': String(data.get('phone') || ''),
-      'Email': String(data.get('email') || 'Not provided'),
-      '_subject': 'New Verisib placement request',
-      '_template': 'table',
-      '_captcha': 'false',
+      'Email': String(data.get('email') || ''),
+      '_replyto': String(data.get('email') || ''),
+      '_subject': String(data.get('_subject') || 'New Verisib placement request'),
+      '_template': String(data.get('_template') || 'table'),
+      '_captcha': String(data.get('_captcha') || 'false'),
       '_honey': String(data.get('_honey') || '')
     };
 
     try {
-      const response = await fetch('https://formsubmit.co/ajax/483fb98a51dfe4be88608df269dbcc39', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
-        body: JSON.stringify(submission)
-      });
-      const result = await response.json();
-      if (!response.ok || result.success === false) throw new Error('Submission failed');
+      await postPlacementRequest(submission);
       startForm.hidden = true;
       startDialog.querySelector('.start-progress').hidden = true;
       startDialog.querySelector('.start-dialog-head').hidden = true;
